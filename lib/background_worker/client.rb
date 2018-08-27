@@ -15,16 +15,11 @@ module BackgroundWorker
     end
 
     def exchange
-      @exchange ||= channel.direct('sidekick')
+      @exchange ||= channel.fanout('sidekick')
     end
 
     def close
       @connection.close
-    end
-
-    def publish(message)
-      message = Marshal.dump(message)
-      exchange.publish(message, routing_key: 'background_jobs')
     end
   end
 end

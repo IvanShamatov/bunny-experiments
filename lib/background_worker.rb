@@ -12,6 +12,7 @@ module BackgroundWorker
       class_name: self.name,
       args: args
     }
-    client.publish(message)
+    message = Marshal.dump(message)
+    client.exchange.publish(message)
   end
 end
