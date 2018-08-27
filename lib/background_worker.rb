@@ -1,6 +1,5 @@
 require_relative './background_worker/client'
 require_relative './background_worker/server'
-require 'pry'
 
 module BackgroundWorker
   def client
@@ -9,7 +8,7 @@ module BackgroundWorker
 
   def perform_later(args = nil)
     message = {
-      class_name: self.name,
+      klass: self.name,
       args: args
     }
     message = Marshal.dump(message)
