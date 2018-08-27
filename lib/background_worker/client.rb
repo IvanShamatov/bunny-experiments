@@ -15,7 +15,7 @@ module BackgroundWorker
     end
 
     def exchange
-      @exchange ||= channel.fanout('sidekick')
+      @exchange ||= channel.direct('sidekick')
     end
 
     def close
